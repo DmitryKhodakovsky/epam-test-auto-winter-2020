@@ -8,5 +8,67 @@
     <artifactId>epam-test-auto-winter-2020</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <testng.version>7.3.0</testng.version>
+    </properties>
 
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/lesson01/simple-suite.xml</suite.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>suite1</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/lesson01/simple-suite1.xml</suite.file>
+            </properties>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suite.file}</suiteXmlFile>
+<!--                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson01/simple-suite.xml</suiteXmlFile>-->
+<!--                        <suiteXmlFile></suiteXmlFile>-->
+<!--                        <suiteXmlFile></suiteXmlFile>-->
+<!--                        <suiteXmlFile></suiteXmlFile>-->
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
