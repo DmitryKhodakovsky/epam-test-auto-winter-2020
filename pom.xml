@@ -9,7 +9,20 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <!-- project settings -->
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
+
+        <!-- dependency versions -->
         <testng.version>7.3.0</testng.version>
+        <webdrivermanager.version>4.2.2</webdrivermanager.version>
+        <selenium-java.version>3.141.59</selenium-java.version>
+        <assertj-core.version>3.17.2</assertj-core.version>
+
+        <!-- plugin versions -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
     </properties>
 
     <profiles>
@@ -40,16 +53,23 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>3.8.1</version>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
         </dependency>
     </dependencies>
 
@@ -58,10 +78,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.source.version}</source>
+                    <target>${java.target.version}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -69,8 +89,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <skipTests>true</skipTests>
                     <suiteXmlFiles>
                         <suiteXmlFile>${suite.file}</suiteXmlFile>
 <!--                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson01/simple-suite.xml</suiteXmlFile>-->
@@ -79,6 +100,25 @@
 <!--                        <suiteXmlFile></suiteXmlFile>-->
                     </suiteXmlFiles>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson04/selenium-jenkins-suite.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
