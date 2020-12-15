@@ -115,7 +115,8 @@
                     <execution>
                         <phase>integration-test</phase>
                         <goals>
-                            <goal>integration-test</goal>
+<!--                            <goal>integration-test</goal>-->
+                            <goal>verify</goal>
                         </goals>
                     </execution>
                 </executions>
