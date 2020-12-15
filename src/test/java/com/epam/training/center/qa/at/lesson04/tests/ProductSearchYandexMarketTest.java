@@ -1,29 +1,21 @@
 package com.epam.training.center.qa.at.lesson04.tests;
 
-import org.assertj.core.api.SoftAssertions;
+import com.epam.training.center.qa.at.lesson04.listeners.AllureListener;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
+@Listeners({AllureListener.class})
 public class ProductSearchYandexMarketTest extends AbstractBaseSeleniumTest {
 
-    @Test
+    @Test(description = "Тестирование поиска товара")
     public void testProductSearch() {
         // 1. Открыть Яндекс маркет
-        yandexMarketIndexPage.open();
+        actionStep.openYandexMarketIndexPage();
 
         // 2. Найти заданный товар
-        yandexMarketIndexPage.sendKeysToSearchInputField("iPhone");
-        yandexMarketIndexPage.clickToSearchButton();
+        actionStep.searchProduct("iPhone");
 
-        // 3. Проверить что текст присутсвует в названии продукта
-        List<String> productNames = yandexMarketCatalogItemPage.getProductNames();
-
-        SoftAssertions softAssertions = new SoftAssertions();
-        productNames.forEach(productName ->
-                softAssertions.assertThat(productName)
-                        .as("Проверка что поисковый текст присутствует в заголовке продукта")
-                        .contains("iPhone"));
-        softAssertions.assertAll();
+        // 3. Проверить что текст присутствует в названии продукта
+        assertionStep.searchTextShouldBeExistInResults("iPhone1");
     }
 }
