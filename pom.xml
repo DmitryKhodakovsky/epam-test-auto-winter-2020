@@ -20,6 +20,7 @@
         <assertj-core.version>3.17.2</assertj-core.version>
         <aspectj.version>1.8.10</aspectj.version>
         <allure.version>2.13.7</allure.version>
+        <cucumber.version>6.9.1</cucumber.version>
 
         <!-- plugin versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -81,6 +82,25 @@
             <version>${allure.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber6-jvm</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -118,7 +138,8 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson04/selenium-jenkins-suite.xml</suiteXmlFile>
+<!--                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson04/selenium-jenkins-suite.xml</suiteXmlFile>-->
+                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson05/cucumber-testng-run-suite.xml</suiteXmlFile>
                     </suiteXmlFiles>
 
                     <argLine>
