@@ -51,6 +51,13 @@
     </profiles>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-light-html</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -124,10 +131,10 @@
                     <skipTests>true</skipTests>
                     <suiteXmlFiles>
                         <suiteXmlFile>${suite.file}</suiteXmlFile>
-<!--                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson01/simple-suite.xml</suiteXmlFile>-->
-<!--                        <suiteXmlFile></suiteXmlFile>-->
-<!--                        <suiteXmlFile></suiteXmlFile>-->
-<!--                        <suiteXmlFile></suiteXmlFile>-->
+                        <!--                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson01/simple-suite.xml</suiteXmlFile>-->
+                        <!--                        <suiteXmlFile></suiteXmlFile>-->
+                        <!--                        <suiteXmlFile></suiteXmlFile>-->
+                        <!--                        <suiteXmlFile></suiteXmlFile>-->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -138,8 +145,9 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-<!--                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson04/selenium-jenkins-suite.xml</suiteXmlFile>-->
-                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson05/cucumber-testng-run-suite.xml</suiteXmlFile>
+                        <!--                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson04/selenium-jenkins-suite.xml</suiteXmlFile>-->
+                        <suiteXmlFile>${project.basedir}/src/test/resources/lesson05/cucumber-testng-run-suite.xml
+                        </suiteXmlFile>
                     </suiteXmlFiles>
 
                     <argLine>
